@@ -3,7 +3,7 @@
 return array(
     'id' =>             'google:oauth2', # notrans
     'version' =>        '0.1',
-    'name' =>           /* trans */ 'Oauth2 Authentication Google',
+    'name' =>           /* trans */ 'Google Oauth2 Authentication',
     'author' =>         'Pablo González',
     'description' =>    /* trans */ 'Provides a configurable authentication backend
         for authenticating staff and clients using an OAUTH2 from Google.',

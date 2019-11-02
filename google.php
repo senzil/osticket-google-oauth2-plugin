@@ -23,6 +23,8 @@ class GoogleAuth {
     }
 
     function triggerAuth() {
+        /*https://github.com/osTicket/osTicket-plugins/issues/52*/
+        global $ost;
         $self = $this;
         return Auth2::legs(3)
             ->set('id', $this->config->get('g-client-id'))
@@ -44,13 +46,14 @@ class GoogleStaffAuthBackend extends ExternalStaffAuthenticationBackend {
     static $id = "google";
     static $name = "Google";
 
-    static $sign_in_image_url = $this->config->get('g-agents-button-url')
+    static $sign_in_image_url = '';
     static $service_name = "Google";
 
     var $config;
 
     function __construct($config) {
         $this->config = $config;
+        GoogleStaffAuthBackend::$sign_in_image_url = $this->config->get('g-agents-button-url');
         $this->google = new GoogleAuth($config);
     }
 
@@ -101,11 +104,12 @@ class GoogleClientAuthBackend extends ExternalUserAuthenticationBackend {
     static $id = "google.client";
     static $name = "Google";
 
-    static $sign_in_image_url = $this->config->get('g-clients-button-url');
+    static $sign_in_image_url = '';
     static $service_name = "Google";
 
     function __construct($config) {
         $this->config = $config;
+        GoogleClientAuthBackend::$sign_in_image_url = $this->config->get('g-clients-button-url');
         $this->google = new GoogleAuth($config);
     }
 

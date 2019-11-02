@@ -31,3 +31,24 @@ the `make.php` command
 This will compile a PHAR file for the plugin directory. The PHAR will be
 named `google-oauth2-plugin.phar` and can be dropped into the osTicket `plugins/` folder
 directly.
+
+Blank Page on google redirect to system
+=======================================
+You can fix it fast changing a little the file /api/.htaccess
+
+    <IfModule mod_rewrite.c>
+
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.*/api)
+
+    #RewriteRule ^(.*)$ %1/http.php/$1 [L]
+    RewriteRule ^(.*)$ {put your schema:domain:port}/api/http.php/$1 [L]
+    </IfModule>
+
+
+    
+
+
